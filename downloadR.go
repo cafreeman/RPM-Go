@@ -13,18 +13,20 @@ import (
 )
 
 // DownloadR download an R installer from a specified URL
-func downloadR(url string, rootPath string) (installerPath string) {
+func downloadR(url string, rootPath string) string {
 	// Parse URL and create filename from last element
 	tokens := strings.Split(url, "/")
 	fileName := tokens[len(tokens)-1]
 
 	// Check if file has already been downloaded. If not, create the file at the specified path
-	installerPath = createDownloadPath(rootPath, fileName)
+	installerPath := createDownloadPath(rootPath, fileName)
 	fmt.Println(installerPath)
+
 	// Check to see if the installer has already been downloaded
 	if _, err := os.Stat(installerPath); err == nil {
 		fmt.Println(fileName, "already exists!")
-		return
+		// return forward-slash installer path
+		return filepath.ToSlash(installerPath)
 	}
 	output, err := os.Create(installerPath)
 	errCheck(err)
@@ -40,6 +42,7 @@ func downloadR(url string, rootPath string) (installerPath string) {
 
 	// Print http response status to console
 	fmt.Println(response.Status)
+
 	// Get the response size from the HTTP header for progress bar
 	responseSize, _ := strconv.Atoi(response.Header.Get("Content-Length"))
 
@@ -59,8 +62,8 @@ func downloadR(url string, rootPath string) (installerPath string) {
 
 	fmt.Printf("%s with %v bytes downloaded\n", fileName, responseSize)
 
-	// return os-compatible installer path
-	return
+	// return forward-slash installer path
+	return filepath.ToSlash(installerPath)
 }
 
 func createDownloadPath(rootPath string, fileName string) string {

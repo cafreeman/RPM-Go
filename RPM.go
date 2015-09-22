@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"os"
 	"runtime"
 )
 
@@ -16,6 +18,9 @@ func main() {
 	} else {
 		rootPath = `/Volumes/C/SVN/trunk/3rdParty/R/R_Installed_Files`
 	}
+
+	fmt.Print("Press enter to continue...")
+	bufio.NewReader(os.Stdin).ReadBytes('\n')
 
 	for _, url := range urls {
 		installerPath := downloadR(url, rootPath)

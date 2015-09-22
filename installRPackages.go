@@ -36,6 +36,6 @@ func installRPackages(rootPath, installDir, version string) {
 }
 
 func packageRepoDir(rootPath, version string) string {
-	rDir := filepath.Dir(rootPath)
+	rDir := filepath.Dir(convertToWindowsPath(rootPath))
 	return filepath.Join(rDir, "localRepo", "bin", "windows", "contrib", version[:3])
 }

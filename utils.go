@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 	"path/filepath"
+	"strings"
 )
 
 // Convert a `/` sepearated path to a valid Windows path using os.PathSeparator
@@ -17,4 +19,10 @@ func errCheck(err error) {
 		fmt.Println(err)
 		log.Fatal(err)
 	}
+}
+
+// Determine the rooted path to SVN on the machine executing this script
+func svnRoot() string {
+	wd, _ := os.Getwd()
+	return strings.TrimSuffix(wd, `\3rdParty\R`)
 }

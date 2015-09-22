@@ -2,7 +2,9 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
+	"path/filepath"
 	"runtime"
 )
 
@@ -12,8 +14,10 @@ var (
 )
 
 func main() {
+	var root string
 	var rInstallDir string
 	if runtime.GOOS == "windows" {
+		root = svnRoot()
 		rInstallDir = filepath.ToSlash(filepath.Join(root, "3rdParty", "R", "R_Installed_Files"))
 	} else {
 		rInstallDir = `/Volumes/C/SVN/trunk/3rdParty/R/R_Installed_Files`

@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"path/filepath"
 	"runtime"
 )
@@ -23,12 +21,14 @@ func main() {
 		rInstallDir = `/Volumes/C/SVN/trunk/3rdParty/R/R_Installed_Files`
 	}
 
-	fmt.Print("Press enter to continue...")
-	bufio.NewReader(os.Stdin).ReadBytes('\n')
+	fmt.Println(rInstallDir)
 
-	for _, url := range urls {
-		installerPath := downloadR(url, rInstallDir)
-		installDir, rVersion := installR(installerPath, rInstallDir)
-		installRPackages(rInstallDir, installDir, rVersion)
-	}
+	buildAlteryxRPackage(root)
+
+	pause()
+	// for _, url := range urls {
+	// 	installerPath := downloadR(url, rInstallDir)
+	// 	installDir, rVersion := installR(installerPath, rInstallDir)
+	// 	installRPackages(rInstallDir, installDir, rVersion)
+	// }
 }

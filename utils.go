@@ -24,5 +24,7 @@ func errCheck(err error) {
 // Determine the rooted path to SVN on the machine executing this script
 func svnRoot() string {
 	wd, _ := os.Getwd()
-	return strings.TrimSuffix(wd, `\3rdParty\R`)
+	return filepath.ToSlash(strings.TrimSuffix(wd, `\3rdParty\R`))
+}
+
 }

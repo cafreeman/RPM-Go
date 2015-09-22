@@ -12,19 +12,19 @@ var (
 )
 
 func main() {
-	var rootPath string
+	var rInstallDir string
 	if runtime.GOOS == "windows" {
-		rootPath = `C:/SVN/trunk/3rdParty/R/R_Installed_Files`
+		rInstallDir = filepath.ToSlash(filepath.Join(root, "3rdParty", "R", "R_Installed_Files"))
 	} else {
-		rootPath = `/Volumes/C/SVN/trunk/3rdParty/R/R_Installed_Files`
+		rInstallDir = `/Volumes/C/SVN/trunk/3rdParty/R/R_Installed_Files`
 	}
 
 	fmt.Print("Press enter to continue...")
 	bufio.NewReader(os.Stdin).ReadBytes('\n')
 
 	for _, url := range urls {
-		installerPath := downloadR(url, rootPath)
-		installDir, rVersion := installR(installerPath, rootPath)
-		installRPackages(rootPath, installDir, rVersion)
+		installerPath := downloadR(url, rInstallDir)
+		installDir, rVersion := installR(installerPath, rInstallDir)
+		installRPackages(rInstallDir, installDir, rVersion)
 	}
 }

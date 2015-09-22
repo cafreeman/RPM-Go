@@ -9,7 +9,6 @@ import (
 
 func installRPackages(rootPath, installDir, version string) {
 	packageDir := packageRepoDir(rootPath, version)
-	// dirContents, err := ioutil.ReadDir(`C:\SVN\trunk\3rdParty\R\localRepo\bin\windows\contrib\3.1`)
 	dirContents, err := ioutil.ReadDir(packageDir)
 	errCheck(err)
 	// Initialize the cmdArgs slice with the two static arguments we need to pass to R.exe, then

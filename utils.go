@@ -27,4 +27,7 @@ func svnRoot() string {
 	return filepath.ToSlash(strings.TrimSuffix(wd, `\3rdParty\R`))
 }
 
+func pause() {
+	fmt.Print("Press enter to continue...")
+	bufio.NewReader(os.Stdin).ReadBytes('\n')
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"os"
@@ -25,4 +26,9 @@ func errCheck(err error) {
 func svnRoot() string {
 	wd, _ := os.Getwd()
 	return strings.TrimSuffix(wd, `\3rdParty\R`)
+}
+
+func pause() {
+	fmt.Print("Press enter to continue...")
+	bufio.NewReader(os.Stdin).ReadBytes('\n')
 }

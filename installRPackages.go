@@ -26,7 +26,6 @@ func installRPackages(rootPath, installDir, version string) {
 			// cmdArgs = append(cmdArgs, cmdString)
 		}
 	}
-
 }
 
 func packageRepoDir(rootPath, version string) string {
